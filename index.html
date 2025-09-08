@@ -1,0 +1,442 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Jonhy's Barber</title>
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;700&display=swap" rel="stylesheet">
+
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+  <style>
+    :root {
+      --dorado: #d4af37;
+      --negro: #0b0b0b;
+      --gris: #1a1a1a;
+      --blanco: #f5f5f5;
+    }
+    * { margin: 0; padding: 0; box-sizing: border-box; transition: all 0.3s ease; }
+    body {
+      font-family: 'Poppins', sans-serif;
+      background: var(--negro);
+      color: var(--blanco);
+      line-height: 1.6;
+    }
+    header {
+      background: rgba(0,0,0,0.9);
+      backdrop-filter: blur(5px);
+      position: fixed;
+      width: 100%;
+      top: 0;
+      z-index: 1000;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 15px 50px;
+    }
+    header img { height: 50px; }
+    nav ul {
+      display: flex;
+      list-style: none;
+      gap: 25px;
+    }
+    nav ul li a {
+      color: var(--blanco);
+      text-decoration: none;
+      font-weight: 500;
+      transition: 0.3s;
+    }
+    nav ul li a:hover { color: var(--dorado); }
+
+    /* Hero */
+    .hero {
+      height: 100vh;
+      background: url('img/andre-hunter-QjwghSDCy_s-unsplash.jpg') center/cover no-repeat;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      text-align: center;
+      position: relative;
+      overflow: hidden;
+    }
+    .hero::after {
+      content: '';
+      position: absolute;
+      top: 0; left: 0; right: 0; bottom: 0;
+      background: rgba(0,0,0,0.7);
+    }
+    .hero-content {
+      position: relative;
+      z-index: 1;
+    }
+    .hero-content h1 {
+      font-size: 3.5rem;
+      color: var(--dorado);
+      text-shadow: 0 0 12px rgba(212,175,55,0.6);
+    }
+    .hero-content p {
+      margin: 20px 0;
+      font-size: 1.2rem;
+      color: var(--blanco);
+    }
+    .btn {
+      background: var(--dorado);
+      color: black;
+      padding: 12px 25px;
+      border-radius: 30px;
+      text-decoration: none;
+      font-weight: bold;
+      transition: 0.3s;
+    }
+    .btn:hover { background: #b8912f; }
+    section { padding: 80px 20px; max-width: 1200px; margin: auto; }
+    section h2 { text-align: center; color: var(--dorado); margin-bottom: 40px; font-size: 2.2rem; }
+
+    /* Servicios */
+    .services {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+      gap: 25px;
+    }
+    .service {
+      background: var(--gris);
+      padding: 20px;
+      border-radius: 12px;
+      text-align: center;
+    }
+    .service i { font-size: 2.5rem; color: var(--dorado); margin-bottom: 15px; }
+
+    /* Citas */
+ .booking {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 40px;
+  justify-content: center;
+  align-items: flex-start;
+}
+
+.horarios {
+  background: var(--gris);
+  padding: 25px;
+  border-radius: 12px;
+  box-shadow: 0 4px 12px rgba(0,0,0,0.5);
+  flex: 1;
+  min-width: 250px;
+}
+
+.horarios h3 {
+  color: var(--dorado);
+  margin-bottom: 15px;
+}
+
+.horarios ul {
+  list-style: none;
+  padding: 0;
+}
+.horarios li {
+  margin: 8px 0;
+}
+
+.contacto-cita {
+  display: flex;
+  flex-direction: column;
+  gap: 15px;
+  flex: 1;
+  min-width: 250px;
+}
+
+.contacto-cita h3 {
+  color: var(--dorado);
+}
+
+.contacto-cita .btn {
+  text-align: center;
+  font-size: 1rem;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+}
+
+
+    /* Contacto */
+    .contact-info {
+      text-align: center;
+    }
+    .contact-info p { margin: 8px 0; }
+
+    /* Reseñas */
+    .reviews {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+      gap: 25px;
+    }
+    .review {
+      background: var(--gris);
+      padding: 20px;
+      border-radius: 12px;
+      text-align: center;
+    }
+    .review img {
+      width: 80px;
+      height: 80px;
+      border-radius: 50%;
+      object-fit: cover;
+      margin-bottom: 15px;
+    }
+    .review .stars { color: var(--dorado); }
+    .review-form {
+  margin-top: 40px;
+  text-align: center;
+}
+
+.review-form input,
+.review-form textarea {
+  width: 100%;
+  max-width: 400px;
+  padding: 12px;
+  margin-bottom: 15px;
+  border-radius: 8px;
+  border: none;
+  outline: none;
+  font-size: 1rem;
+}
+
+.review-form textarea {
+  resize: vertical;
+  height: 100px;
+}
+
+.review-form button {
+  padding: 12px 25px;
+  border-radius: 30px;
+  border: none;
+  font-weight: bold;
+  background: var(--dorado);
+  color: black;
+  cursor: pointer;
+  transition: 0.3s;
+}
+
+.review-form button:hover {
+  background: #b8912f;
+}
+
+
+    /* Footer */
+    footer {
+      background: #000;
+      text-align: center;
+      padding: 30px 20px;
+    }
+    footer .socials a {
+      margin: 0 12px;
+      font-size: 1.6rem;
+      color: var(--dorado);
+      transition: 0.3s;
+    }
+    footer .socials a:hover { color: white; }
+    
+
+    /* Animaciones fade-in */
+    .fade-in {
+      opacity: 0;
+      transform: translateY(40px);
+      transition: opacity 1s ease, transform 1s ease;
+    }
+    .fade-in.visible {
+      opacity: 1;
+      transform: translateY(0);
+    }
+
+    /* Responsive */
+    .hamburger {
+      display: none;
+      cursor: pointer;
+    }
+    .hamburger img {
+      width: 32px;
+      height: 32px;
+    }
+    @media (max-width: 768px) {
+      nav ul {
+        display: none;
+        flex-direction: column;
+        background: #000;
+        position: absolute;
+        top: 70px;
+        right: 0;
+        width: 200px;
+        padding: 20px;
+        border-radius: 0 0 10px 10px;
+        animation: slideDown 0.3s ease forwards;
+      }
+      nav ul.active {
+        display: flex;
+      }
+      .hamburger {
+        display: block;
+      }
+    }
+    @keyframes slideDown {
+      from { opacity: 0; transform: translateY(-20px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
+  </style>
+</head>
+<body>
+  <header>
+    <img src="img/Letras doradas entrelazadas _J_ y _R_.png" alt="Jonhy's Barber Logo">
+    <nav>
+      <ul class="nav-links">
+        <li><a href="#inicio">Inicio</a></li>
+        <li><a href="#servicios">Servicios</a></li>
+        <li><a href="#citas">Citas</a></li>
+        <li><a href="#reviews">Reseñas</a></li>
+        <li><a href="#contacto">Contacto</a></li>
+      </ul>
+      <div class="hamburger">
+        <img src="img/icons8-menú-50.png" alt="Menú">
+      </div>
+    </nav>
+  </header>
+
+  <section class="hero" id="inicio">
+    <div class="hero-content">
+      <h1>Jonhy's Barber</h1>
+      <p>Estilo, precisión y elegancia en cada corte.</p>
+      <a href="#citas" class="btn">Reserva tu cita</a>
+    </div>
+  </section>
+
+  <section id="servicios">
+    <h2>Servicios</h2>
+    <div class="services">
+      <div class="service"><i class="fas fa-cut"></i><h3>Cortes Clásicos</h3><p>Estilo tradicional con acabado moderno.</p></div>
+      <div class="service"><i class="fas fa-beard"></i><h3>Arreglo de Barba</h3><p>Definición y cuidado profesional.</p></div>
+      <div class="service"><i class="fas fa-spray-can"></i><h3>Tratamientos</h3><p>Productos premium para tu cabello.</p></div>
+    </div>
+  </section>
+
+  <section id="citas" class="appointment">
+<h2>Reserva tu Cita</h2>
+  <div class="booking">
+    <div class="horarios">
+      <h3>📅 Horarios de Atención</h3>
+      <ul>
+        <li><strong>Lunes - Viernes:</strong> 10:00 - 20:00</li>
+        <li><strong>Sábado:</strong> 10:00 - 18:00</li>
+        <li><strong>Domingo:</strong> Cerrado</li>
+      </ul>
+    </div>
+    <div class="contacto-cita">
+      <h3>📲 Reserva por</h3>
+      <a href="https://instagram.com/@joanreyesbarber" target="_blank" class="btn">
+        <i class="fab fa-instagram"></i> Instagram DM
+      </a>
+      <a href="https://wa.me/+34643597885" target="_blank" class="btn">
+        <i class="fab fa-whatsapp"></i> WhatsApp
+      </a>
+      <a href="tel:+34643597885" class="btn">
+        <i class="fas fa-phone"></i> Llamar
+      </a>
+    </div>
+  </div>
+  </section>
+
+  <section id="reviews">
+   <h2>Reseñas de Clientes</h2>
+
+  <div class="reviews" id="reviewsContainer">
+    <div class="review">
+      <img src="img/corte1.jpg" alt="Cliente 1">
+      <p>“El mejor barbero de la ciudad, atención excelente.”</p>
+      <p class="stars">★★★★★</p>
+    </div>
+    <div class="review">
+      <img src="img/corte2.jpg" alt="Cliente 2">
+      <p>“Ambiente muy profesional y acogedor. Recomendado.”</p>
+      <p class="stars">★★★★★</p>
+    </div>
+    <div class="review">
+      <img src="img/corte3.jpg" alt="Cliente 3">
+      <p>“Cortes modernos, rápidos y perfectos. No cambio de barbería.”</p>
+      <p class="stars">★★★★★</p>
+    </div>
+  </div>
+
+  <div class="review-form">
+    <h3>Deja tu reseña</h3>
+    <form id="reviewForm">
+      <input type="text" id="reviewName" placeholder="Tu nombre" required>
+      <textarea id="reviewText" placeholder="Escribe tu reseña" required></textarea>
+      <button type="submit" class="btn">Enviar</button>
+    </form>
+  </div>
+  </section>
+
+  <section id="contacto">
+    <h2>Contacto</h2>
+    <div class="contact-info">
+      <p><i class="fas fa-map-marker-alt"></i> Calle Alto del Horno, Pedralba</p>
+      <p><i class="fas fa-phone"></i> +34 643 597 885</p>
+      <p><i class="fas fa-envelope"></i> contacto@jonhysbarber.com</p>
+    </div>
+  </section>
+
+  <footer>
+    <p>&copy; 2025 Jonhy's Barber - Todos los derechos reservados</p>
+    <div class="socials">
+      <a href="https://facebook.com" target="_blank"><i class="fab fa-facebook"></i></a>
+      <a href="https://instagram.com" target="_blank"><i class="fab fa-instagram"></i></a>
+      <a href="https://wa.me/1234567890" target="_blank"><i class="fab fa-whatsapp"></i></a>
+    </div>
+  </footer>
+
+  <script>
+    document.addEventListener("DOMContentLoaded", () => {
+      const hamburger = document.querySelector('.hamburger');
+      const navLinks = document.querySelector('.nav-links');
+      hamburger.addEventListener('click', () => {
+        navLinks.classList.toggle('active');
+      });
+
+      const sections = document.querySelectorAll("section");
+      const observer = new IntersectionObserver((entries, observer) => {
+        entries.forEach(entry => {
+          if (entry.isIntersecting) {
+            entry.target.classList.add("visible");
+            observer.unobserve(entry.target);
+          }
+        });
+      }, { threshold: 0.2 });
+      sections.forEach(section => {
+        section.classList.add("fade-in");
+        observer.observe(section);
+      });
+    });
+    const reviewForm = document.getElementById("reviewForm");
+const reviewsContainer = document.getElementById("reviewsContainer");
+
+reviewForm.addEventListener("submit", (e) => {
+  e.preventDefault();
+  const name = document.getElementById("reviewName").value.trim();
+  const text = document.getElementById("reviewText").value.trim();
+
+  if (!name || !text) return;
+
+  const newReview = document.createElement("div");
+  newReview.classList.add("review");
+  newReview.innerHTML = `
+    <img src="img/default-user.jpg" alt="${name}">
+    <p>“${text}”</p>
+    <p class="stars">★★★★★</p>
+  `;
+
+  reviewsContainer.prepend(newReview); // agrega la reseña arriba
+  reviewForm.reset();
+});
+
+  </script>
+
+</body>
+</html>
